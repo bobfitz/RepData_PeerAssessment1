@@ -1,9 +1,9 @@
-#Question 1 Loading and preprocessing the data
+##Question 1 Loading and preprocessing the data
 ```{r Loading, echo=TRUE}
 x <- read.csv("activity.csv", colClasses=c("numeric", "Date", "integer"), stringsAsFactors=FALSE)
 
 ```
-#Question 2 What is the mean total number of steps taken per day?
+##Question 2 What is the mean total number of steps taken per day?
 ```{r Question2, echo=TRUE}
 z <- NULL
 y <- NULL
@@ -13,7 +13,7 @@ hist(y, main="Total Steps per day", xlab="Steps", ylab="Number of days")
 mean(y, na.rm=TRUE)
 median(y, na.rm=TRUE)
 ```
-#Question 3 What is the average daily activity pattern?  
+##Question 3 What is the average daily activity pattern?  
 ```{r Question3, echo=TRUE}
 z <- NULL
 y <- NULL
@@ -23,12 +23,12 @@ for (i in z) y <- c(y, mean(x[x$interval==i, 1], na.rm=TRUE))
 plot(z,y, type="l", xlab="Intervals", ylab="Average Steps", main="Average Daily Activity Pattern")
 ```  
   
-## Which 5 minute interval, on average is the top interval  
+### Which 5 minute interval, on average is the top interval  
 ```{r TOPAVG, echo=TRUE}
 x1 <- data.frame("interval"=z,"mean"=y)
 x1[x1$mean==max(x1$mean),]
 ```
-#Question 4 Imputing missing values  
+##Question 4 Imputing missing values  
 ### 1. Calculate and report the total number of missing values in the dataset.  
 ```{r Question4, echo=TRUE}
 sum(!complete.cases(x))
@@ -52,19 +52,20 @@ for (i in z) y <- c(y, sum(x1[x1$date==i, 1]))
 hist(y, main="Total Steps per day", xlab="Steps", ylab="Number of days")
 ```  
    
-### Calculate report the mean.
+### Calculate and report the mean.
 ```{r mean, echo=TRUE}
 avgy <- mean(y)
 avgy
 ```  
-### Calculate report the median.
+### Calculate and report the median.
 ```{r median, echo=TRUE}
 mdny <- median(y)
 mdny
 ```  
-### Are these values different from the estimates in the first part of the assignment?  Only the median and only slightly.  
+### Are these values different from the estimates in the first part of the assignment?  Not significantly although the median is slightly changed.  
   
-#Are there differences in activity patterns between weekdays and weekends?  
+###Are there differences in activity patterns between weekdays and weekends?    
+### Yes  
 ### 1. Create a new factor variable in the dataset with two levels  – “weekday” and “weekend”  
 ```{r dow, echo=TRUE} 
 x1$dow <- weekdays(x1$date)
